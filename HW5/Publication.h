@@ -1,3 +1,5 @@
+#ifndef __PUBLICATION_H
+#define __PUBLICATION_H
 #include <iostream> 
 
 using namespace std;
@@ -32,7 +34,7 @@ class Publication{
 			this->isbn = isbn;
 		}
 	
-		check_out(string patron_name, string patron_phone){
+		void check_out(string patron_name, string patron_phone){
 			this->patron_name = patron_name;
 			this->patron_phone = patron_phone;
 		}
@@ -44,3 +46,4 @@ class Publication{
 		string to_string();
 		
 };
+#endif

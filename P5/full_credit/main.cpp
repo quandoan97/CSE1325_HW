@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
   int cmd = -1;
   while (cmd != 0) {
     string menu = R"(
+    
 ================================= 
 CSE1325 Library Management System
 =================================

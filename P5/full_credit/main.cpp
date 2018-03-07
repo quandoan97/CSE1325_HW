@@ -1,4 +1,5 @@
 
+#include "dialogs.h"
 #include "enums.h"
 #include "library.h"
 #include "publication.h"
@@ -7,9 +8,10 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
+  Gtk::Main kit(argc, argv);
   Library library;
-
+  
   int cmd = -1;
   while (cmd != 0) {
     string menu = R"(
@@ -29,7 +31,8 @@ Utility
 (9) Help
 (0) Exit
 )";
-
+    Dialogs::input("Hello");
+    
     cout << menu << "Command? ";
     cin >> cmd;
     cin.ignore(); // consume \n

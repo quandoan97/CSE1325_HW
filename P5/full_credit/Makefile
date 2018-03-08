@@ -8,10 +8,10 @@ rebuild: clean main
 debug: CXXFLAGS += -g
 debug: rebuild
 
-main: main.o library.o publication.o 
-	$(CXX) $(CXXFLAGS) -o lms main.o library.o publication.o $(GTKFLAGS)
+main: main.o library.o publication.o dialog.o
+	$(CXX) $(CXXFLAGS) -o lms main.o library.o publication.o dialog.o $(GTKFLAGS)
 
-main.o: main.cpp *.h
+main.o: main.cpp *.h 
 	$(CXX) $(CXXFLAGS) -c main.cpp $(GTKFLAGS)
 
 test_library: test_library.o library.o publication.o
@@ -31,6 +31,9 @@ test_publication.o: test_publication.cpp *.h
 
 publication.o: publication.cpp *.h
 	$(CXX) $(CXXFLAGS) -c publication.cpp $(GTKFLAGS)
+
+dialog.o: dialog.cpp *h
+	$(CXX) $(CXXFLAGS) -c dialog.cpp $(GTKFLAGS)
 
 clean:
 	-rm -f *.o lms test_publication test_library *.gch *~ gui cli test

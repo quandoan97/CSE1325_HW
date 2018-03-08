@@ -1,7 +1,8 @@
-#include "dialogs.h"
+#include "dialog.h"
 
-std::string Dialogs::input(std::string msg, std::string title, std::string cancel_text){
-	Gtk::Dialogs *dialog = new Gtk::Dialog();
+std::string Dialog::input(std::string msg, std::string title, std::string cancel_text){
+	cancel_text = "CANCELED";
+	Gtk::Dialog *dialog = new Gtk::Dialog();
 	dialog->set_title(title);
 	
 	Gtk::Label *label = new Gtk::Label(msg);
@@ -10,10 +11,10 @@ std::string Dialogs::input(std::string msg, std::string title, std::string cance
 	
 	dialog->add_button("Cancel",0);
 	dialog->add_button("OK", 1);
-	dialog-set_default_response(1);
+	dialog->set_default_response(1);
 	
 	Gtk::Entry *entry = new Gtk::Entry{};
-	entry->set_text(default_text);
+	entry->set_text("");
 	entry->set_max_length(50);
 	entry->show();
 	dialog->get_vbox()->pack_start(*entry);
@@ -22,7 +23,10 @@ std::string Dialogs::input(std::string msg, std::string title, std::string cance
 	std::string text = entry->get_text();
 	
 	dialog->close();
-	while(Gtk::Main::events_pending()) Gtk::Main::iteration();
+	while(Gtk::Main::events_pending()){
+		Gtk::Main::iteration();
+	}
+
 	delete entry;
 	delete label;
 	delete dialog;
@@ -32,4 +36,8 @@ std::string Dialogs::input(std::string msg, std::string title, std::string cance
 	}else{
 		return cancel_text;
 	}
+}
+
+std::string Dialog::get_user_input(){
+	return user_input;
 }
